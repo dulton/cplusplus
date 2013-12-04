@@ -1,0 +1,47 @@
+HTTP/1.1 200 OK
+
+Date: Mon, 12 Sep 2011 22:03:41 GMT
+
+Server: Apache/2.2.14 (Ubuntu)
+
+Last-Modified: Thu, 26 May 2011 19:38:41 GMT
+
+ETag: "13928-138-4a432f7ef2e56"
+
+Accept-Ranges: bytes
+
+Content-Length: 312
+
+Connection: close
+
+Content-Type: application/x-mpegurl
+
+
+
+#EXTM3U
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=158000
+./stream_cell_4x3_150k.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=248000
+./stream_cell_4x3_240k.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=448000
+./stream_wifi_4x3_440k.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=648000
+./stream_wifi_4x3_640k.m3u8
+
+    'abr_apple/src/abr_algorithm.cpp',
+    'abr_apple/src/abr_debug.cpp',
+    'abr_apple/src/abr_error.cpp',
+    'abr_apple/src/abr_parser.cpp',
+    'abr_apple/src/abr_status.cpp',
+    'abr_apple/src/abr_timeout.cpp',
+    'abr_apple/src/abr_transaction.cpp',
+    'abr_apple/src/my_player.cpp'
+
+Description: NONE
+Change Type: ERQ
+Change #: NEXT
+Reviewed by: NONE
+Review ID: NONE
+Approved by: NONE
+Designer Testing: NONE
+Testing Impact: NONE

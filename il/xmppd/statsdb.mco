@@ -1,0 +1,57 @@
+declare database statsdb;
+
+class ClientResults
+{
+    unsigned<4> BlockIndex;
+    unsigned<4> Handle;
+
+    unsigned<4> IntendedLoad;
+    unsigned<4> ActiveConnections;
+    unsigned<8> AttemptedConnections;
+    unsigned<8> SuccessfulConnections;
+    unsigned<8> UnsuccessfulConnections;
+    unsigned<8> AbortedConnections;
+    
+    unsigned<4> TotalClientCount;
+
+    unsigned<4> IntendedRegLoad;
+    unsigned<8> RegAttempts;
+    unsigned<8> RegSuccesses;
+    unsigned<8> RegFailures;
+
+    unsigned<8> LoginAttempts;
+    unsigned<8> LoginSuccesses;
+    unsigned<8> LoginFailures;
+
+    unsigned<8> PubAttempts;
+    unsigned<8> PubSuccesses;
+    unsigned<8> PubFailures;
+
+    unsigned<8> ServerResponseMinTimeMsec;
+    unsigned<8> ServerResponseMaxTimeMsec;
+    unsigned<8> ServerResponseCumulativeTimeMsec;
+    unsigned<8> ServerResponseAvgTimeMsec;
+
+    unsigned<8> RxResponseCode302;
+    unsigned<8> RxResponseCode400;
+    unsigned<8> RxResponseCode401;
+    unsigned<8> RxResponseCode402;
+    unsigned<8> RxResponseCode403;
+    unsigned<8> RxResponseCode404;
+    unsigned<8> RxResponseCode405;
+    unsigned<8> RxResponseCode406;
+    unsigned<8> RxResponseCode407;
+    unsigned<8> RxResponseCode409;
+    unsigned<8> RxResponseCode500;
+    unsigned<8> RxResponseCode501;
+    unsigned<8> RxResponseCode503;
+    unsigned<8> RxResponseCode504;
+
+    unsigned<8> LastModified;
+
+    tree<BlockIndex> BlockIndexIndex;
+    tree<Handle> HandleIndex;
+};
+
+
+

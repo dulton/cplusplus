@@ -1,0 +1,98 @@
+#
+#  Copyright (c) 2007 by Spirent Communications Inc.
+#  All Rights Reserved.
+#
+#  This software is confidential and proprietary to Spirent Communications Inc.
+#  No part of this software may be reproduced, transmitted, disclosed or used
+#  in violation of the Software License Agreement without the expressed
+#  written consent of Spirent Communications Inc.
+#
+# $Id: //TestCenter/mainline/content/mcast/igmpmld/il/mcastd/utest/SConscript#5 $
+#
+
+import os
+
+Import('*')
+
+e = env.Clone()
+
+utest_sources = [
+    'TestSipApplication.cpp',
+    'TestSipAuthentication.cpp',
+    'TestSipProtocol.cpp',
+    'TestSipTransactionLayer.cpp',
+    'TestUserAgentBlock.cpp',
+    'TestUserAgentNameEnumerator.cpp',
+    'TestStatefulSip.cpp',
+    'TestSipDynProxy.cpp',
+    'TestMediaFileProcessor.cpp',
+    'TestUtilities.cpp'
+    ]
+
+if env['debug']:
+	build_type = 'debug'
+else:
+	build_type = 'release'
+
+arch_full_name = conf['arch_name'] + "_" + conf['arch_variant']
+
+e['LIBS'] += [ 'l4l7app',
+               'l4l7base',
+               'l4l7utils',
+               'statsframework',
+	       'rvsip',
+               'rvdepcore',
+               'rvrtp',
+               'rvsrtp',
+               'rvads',
+	       'rvsigcomp',
+	       'rvsdp',
+               'rvcommon',
+               'vqmon',
+               'tipuser',
+               'tippacket',
+               'tipcommon',
+               'pthread',
+               'posixtime'
+               ]
+e['LIBS'] += e['LIB_DB']
+
+e['CPPPATH'] += [ '.',
+                  '..',
+	          '../app',
+	          '../voipmedia','../voipmedia/mediafiles','../voipmedia/vq','../voipmedia/encrtp','../voipmedia/fpgartp',
+	          '../signaling','../signaling/sip','../signaling/sip/lean','../signaling/sip/rv','../signaling/sip/rv/core',
+                  '#content/traffic/l4l7/il',
+                  '#framework/il/common/lib',
+                  conf['eXtremeDB_srcdir'] + '/include',
+                  '#content/traffic/l4l7/il/external/RvSipTK/include/' + build_type + '/ads',
+                  '#content/traffic/l4l7/il/external/RvSipTK/include/' + build_type + '/common',
+                  '#content/traffic/l4l7/il/external/RvSipTK/include/' + build_type + '/depcore',
+                  '#content/traffic/l4l7/il/external/RvSipTK/include/' + build_type + '/rtpRtcp',
+                  '#content/traffic/l4l7/il/external/RvSipTK/include/' + build_type + '/offerAnswer',
+                  '#content/traffic/l4l7/il/external/RvSipTK/include/' + build_type + '/sdp',
+                  '#content/traffic/l4l7/il/external/RvSipTK/include/' + build_type + '/sigcomp',
+                  '#content/traffic/l4l7/il/external/RvSipTK/include/' + build_type + '/sip', 
+                  '#content/tripleplay/vqana/il/vqanad/vqmon/include',
+                  '#content/traffic/l4l7/il/external/libtip-1.3/lib/common/src',
+                  '#content/traffic/l4l7/il/external/libtip-1.3/lib/packet/src',
+                  '#content/traffic/l4l7/il/external/libtip-1.3/lib/user/src',
+                  ]
+
+e['LIBPATH'] += [os.path.join('#/content/traffic/l4l7/il/external/RvSipTK/binaries/MontaVista_4.0_'\
+                + arch_full_name + '/' + build_type + '/lib'),
+                 os.path.join('#content/tripleplay/vqana/il/vqanad/vqmon/lib/linux-' \
+                + arch_full_name + '_mvl40/' + build_type ),
+                os.path.join('#/content/traffic/l4l7/il/external/libtip-1.3/binaries/MontaVista_4.0_'\
+                + arch_full_name + '/' + build_type + '/lib')]
+
+testname = 'sipd_utest'
+target = os.path.join(conf['utest_blddir'], testname)
+utest = utils.runUnitTest(e, target, utest_sources+class_objs+mco_objs)
+
+Return('utest')
+
+# Local Variables:
+# mode:python
+# End:
+# vim:syntax=python

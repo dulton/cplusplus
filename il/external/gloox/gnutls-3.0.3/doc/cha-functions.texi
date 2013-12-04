@@ -1,0 +1,48 @@
+@node Function reference
+@appendix Function Reference
+@cindex function reference
+
+@menu
+* Core functions::
+* X509 certificate functions::
+* GnuTLS-extra functions::
+* OpenPGP functions::
+@end menu
+
+@node Core functions
+@section Core Functions
+
+The prototypes for the following functions lie in
+@file{gnutls/gnutls.h}.
+
+@include gnutls-api.texi
+
+@node X509 certificate functions
+@section @acronym{X.509} Certificate Functions
+@cindex X.509 Functions
+
+The following functions are to be used for @acronym{X.509} certificate handling.
+Their prototypes lie in @file{gnutls/x509.h}.
+
+@include x509-api.texi
+
+@node GnuTLS-extra functions
+@section @acronym{GnuTLS-extra} Functions
+@cindex GnuTLS-extra functions
+
+These functions are only available in the GPLv3+ version of the
+library called @code{gnutls-extra}. The prototypes for this library
+lie in @file{gnutls/extra.h}.
+
+@include extra-api.texi
+
+@node OpenPGP functions
+@section @acronym{OpenPGP} Functions
+@cindex OpenPGP functions
+
+The following functions are to be used for @acronym{OpenPGP}
+certificate handling.  Their prototypes lie in
+@file{gnutls/openpgp.h}.
+
+@include pgp-api.texi
+

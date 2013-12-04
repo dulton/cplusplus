@@ -1,0 +1,19 @@
+-include ../../../env.mak
+CONFIGURE=${GLOOX_WORK_HOME}/libgcrypt-1.5.0/configure
+
+all:${recompile}
+	make -f Makefile install
+	touch ${recompile}
+
+clean:
+	[ -e Makefile ] && make -f Makefile distclean || exit 0
+	rm -f Makefile
+	rm -f ${recompile} 
+	rm -rf cipher compat doc m4 mpi random src tests
+
+${recompile}:
+	${CONFIGURE} --host=${HOST} --prefix=${PREFIX}/libgcrypt --disable-option-checking \
+		--disable-dependency-tracking \
+		--with-gpg-error-prefix=${PREFIX}/libgpg-error\
+		--enable-static\
+		--disable-shared

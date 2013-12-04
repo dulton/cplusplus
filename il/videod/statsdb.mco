@@ -1,0 +1,78 @@
+#define MAX_CLIENT_BLOCKS 32767
+#define MAX_SERVER_BLOCKS 32767
+
+declare database statsdb;
+
+class VideoClientResults
+{
+    autoid[MAX_CLIENT_BLOCKS];
+
+    unsigned<4> BlockIndex;
+    unsigned<4> Handle;
+    
+    unsigned<8> AttemptedConnections;
+    unsigned<8> SuccessfulConnections;
+    unsigned<8> UnsuccessfulConnections;
+    unsigned<8> AbortedConnections;
+    
+    unsigned<8> AttemptedTransactions;
+    unsigned<8> SuccessfulTransactions;
+    unsigned<8> UnsuccessfulTransactions;
+    unsigned<8> AbortedTransactions;
+
+    unsigned<8> RxResponseCode200;
+    unsigned<8> RxResponseCode400;
+    unsigned<8> RxResponseCode403;
+    unsigned<8> RxResponseCode404;
+    unsigned<8> RxResponseCode405;
+    unsigned<8> RxResponseCode454;
+    unsigned<8> RxResponseCode459;
+    unsigned<8> RxResponseCode461;
+
+    unsigned<8> LastModified;
+
+    hash<BlockIndex> BlockIndexIndex[MAX_CLIENT_BLOCKS];
+    hash<Handle> HandleIndex[MAX_CLIENT_BLOCKS];
+};
+
+class VideoServerResults
+{
+    autoid[MAX_SERVER_BLOCKS];
+
+    unsigned<4> BlockIndex;
+    unsigned<4> Handle;
+    
+    unsigned<8> TotalConnections;
+    
+    unsigned<8> SuccessfulTransactions;
+    unsigned<8> UnsuccessfulTransactions;
+
+    unsigned<8> TxResponseCode200;
+    unsigned<8> TxResponseCode400;
+    unsigned<8> TxResponseCode403;
+    unsigned<8> TxResponseCode404;
+    unsigned<8> TxResponseCode405;
+    unsigned<8> TxResponseCode454;
+    unsigned<8> TxResponseCode459;
+    unsigned<8> TxResponseCode461;
+
+    unsigned<8> LastModified;
+
+    hash<BlockIndex> BlockIndexIndex[MAX_SERVER_BLOCKS];
+    hash<Handle> HandleIndex[MAX_SERVER_BLOCKS];
+};
+
+class VideoServerSessionEvents
+{
+    unsigned<8> EventTimestamp;
+    unsigned<4> Handle;
+
+    string SrcAddress;
+    string DstAddress;
+    unsigned<2> DstPort;
+
+    string ClipFile;
+    unsigned<1> Playing;
+
+    list;
+};

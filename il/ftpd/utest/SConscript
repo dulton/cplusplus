@@ -1,0 +1,46 @@
+#
+#  Copyright (c) 2006 by Spirent Communications Inc.
+#  All Rights Reserved.
+#
+#  This software is confidential and proprietary to Spirent Communications Inc.
+#  No part of this software may be reproduced, transmitted, disclosed or used
+#  in violation of the Software License Agreement without the expressed
+#  written consent of Spirent Communications Inc.
+#
+# $Id: //TestCenter/p2.30_dev_ifmgr/content/traffic/l2l3/il/Generator/Learning/utest/SConscript#1 $
+#
+
+import os
+
+Import('*')
+
+e = env.Clone()
+
+utest_sources = [
+    'TestFtpApplication.cpp',
+    'TestFtpProtocol.cpp'
+    ]
+
+e['LIBS'] += [ 'l4l7app',
+               'l4l7base',
+               'l4l7utils',
+               'statsframework',
+               ]
+e['LIBS'] += e['LIB_DB']
+
+e['CPPPATH'] += [ '.',
+                  '..',
+                  '#content/traffic/l4l7/il',
+                  '#framework/il/common/lib', 
+                  ]
+
+testname = 'ftpd_utest'
+target = os.path.join(conf['utest_blddir'], testname)
+utest = utils.runUnitTest(e, target, utest_sources+class_objs+mco_objs)
+
+Return('utest')
+
+# Local Variables:
+# mode:python
+# End:
+# vim:syntax=python

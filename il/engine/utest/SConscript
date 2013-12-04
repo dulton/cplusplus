@@ -1,0 +1,56 @@
+#
+#  Copyright (c) 2006 by Spirent Communications Inc.
+#  All Rights Reserved.
+#
+#  This software is confidential and proprietary to Spirent Communications Inc.
+#  No part of this software may be reproduced, transmitted, disclosed or used
+#  in violation of the Software License Agreement without the expressed
+#  written consent of Spirent Communications Inc.
+#
+# $Id: //TestCenter/p2.30_dev_ifmgr/framework/il/common/lib/vif/utest/SConscript#1 $
+#
+
+import os
+
+Import('*')
+
+e = env.Clone()
+
+utest_sources = [
+    'TestFlowEngine.cpp',
+    'TestPktLoopHandler.cpp',
+    'TestStreamInstance.cpp',
+    'TestAttackInstance.cpp',
+    'TestPacketFactory.cpp',
+    'TestPlaylistEngine.cpp',
+    'TestFlowLoopHandler.cpp',
+    'TestPlaylistInstance.cpp',
+    'TestRangeModifier.cpp',
+    'TestRandomModifier.cpp',
+    'TestTableModifier.cpp',
+    'TestUint48.cpp',
+    'TestUint128.cpp',
+    'TestModifierBlock.cpp',
+    'TestReferenceHolder.cpp',
+    ]
+
+e['LIBS'] += [ 'l4l7engine'
+             ]
+
+e['CPPPATH'] += [ '.',
+                  '..',
+                  '#content/traffic/l4l7/il',
+                  '#framework/common/lib', 
+                  '#framework/il/common/lib',
+                  ]
+
+testname = 'l4l7engine_utest'
+target = os.path.join(conf['utest_blddir'], testname)
+utest = utils.runUnitTest(e, target, utest_sources)
+
+Return('utest')
+
+# Local Variables:
+# mode:python
+# End:
+# vim:syntax=python

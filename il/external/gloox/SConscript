@@ -1,0 +1,51 @@
+import os
+Import('*')
+
+e = env.Clone()
+env_cc='CC='+env['CC']+'\n'
+
+host=conf['compiler_prefix'][0:-1]
+env_host='HOST='+host+'\n'
+
+path=conf['compiler_abs_path']
+path+=':'+e['ENV']['PATH']
+env_path='PATH='+path+'\n'
+
+prefix=os.path.join(os.getcwd()+'/binaries/',host)
+env_prefix='PREFIX='+prefix+'\n'
+
+recompile='.recompile_'+host
+env_recompile='recompile='+recompile+'\n'
+
+pkg_conf_path=prefix+'/pkgconfig'
+env_pkg_conf_path='PKG_CONFIG_PATH='+pkg_conf_path+'\n'
+
+work_home=os.getcwd()
+env_work_home='GLOOX_WORK_HOME='+work_home+'\n'
+
+compiler_abs_prefix=os.path.join(conf['compiler_abs_path']+'/',conf['compiler_prefix'])
+env_compiler_prefix='CROSS_COMIPER_PREFIX='+compiler_abs_prefix+'\n'
+
+f = open("env.mak","w")
+try:
+	f.write(env_cc)
+	f.write(env_host)
+	f.write(env_path)
+	f.write(env_prefix)
+	f.write(env_recompile)
+	f.write(env_pkg_conf_path)
+	f.write(env_work_home)
+	f.write(env_compiler_prefix)
+finally:
+	f.close()
+         
+# build gmp, nettle, gnutls, gpg-error, gcrypt, and gloox as well
+xmpplibs = ARGUMENTS.get('xmpplibs', 0)
+if int(xmpplibs):
+	e.SConscript([os.path.join('#content/traffic/l4l7/il/external/gloox/builds/'+host+'/libgpg-error/','SConscript')])
+	e.SConscript([os.path.join('#content/traffic/l4l7/il/external/gloox/builds/'+host+'/libgcrypt/','SConscript')])
+	e.SConscript([os.path.join('#content/traffic/l4l7/il/external/gloox/builds/'+host+'/gmp/','SConscript')])
+	e.SConscript([os.path.join('#content/traffic/l4l7/il/external/gloox/builds/'+host+'/nettle/','SConscript')])
+	e.SConscript([os.path.join('#content/traffic/l4l7/il/external/gloox/builds/'+host+'/gnutls/','SConscript')])
+	e.SConscript([os.path.join('#content/traffic/l4l7/il/external/gloox/builds/'+host+'/gloox/','SConscript')])
+

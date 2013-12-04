@@ -1,0 +1,18 @@
+#!/bin/sh
+
+PYTHON="/usr/spirent/bin/python"
+PID_FILE="/var/run/videod.pid"
+MODULE_DIR="/usr/spirent/bin/video"
+
+#
+# link in the user space stack
+#
+export LD_PRELOAD="/usr/spirent/lib/libbsdnet-preload.so"
+
+if [ -e ${MODULE_DIR}/videod.pyo ]; then
+    VIDEOD_MODULE=${MODULE_DIR}/videod.pyo
+else
+    VIDEOD_MODULE=${MODULE_DIR}/videod.py
+fi
+
+start-stop-daemon --start --quiet --background --pidfile $PID_FILE --exec $PYTHON -- -O $VIDEOD_MODULE $@

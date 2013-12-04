@@ -1,0 +1,89 @@
+declare database statsdb;
+
+class DpgClientResults
+{
+    unsigned<4> BlockIndex;
+    unsigned<4> Handle;
+
+    unsigned<8> ElapsedSeconds;
+    unsigned<4> IntendedLoad;
+
+    unsigned<4> ActiveConnections;
+    unsigned<8> AttemptedConnections;
+    unsigned<8> SuccessfulConnections;
+    unsigned<8> UnsuccessfulConnections;
+    unsigned<8> AbortedConnections;
+
+    unsigned<8> AttemptedConnectionsPerSecond;
+    unsigned<8> SuccessfulConnectionsPerSecond;
+    unsigned<8> UnsuccessfulConnectionsPerSecond;
+    unsigned<8> AbortedConnectionsPerSecond;
+
+    unsigned<4> ActivePlaylists;
+    unsigned<8> AttemptedPlaylists;
+    unsigned<8> SuccessfulPlaylists;
+    unsigned<8> UnsuccessfulPlaylists;
+    unsigned<8> AbortedPlaylists;
+
+    unsigned<8> AttemptedPlaylistsPerSecond;
+    unsigned<8> SuccessfulPlaylistsPerSecond;
+    unsigned<8> UnsuccessfulPlaylistsPerSecond;
+    unsigned<8> AbortedPlaylistsPerSecond;
+
+    unsigned<8> GoodputRxBytes;
+    unsigned<8> GoodputTxBytes;
+    unsigned<8> GoodputRxBps;
+    unsigned<8> GoodputTxBps;
+    unsigned<8> GoodputAvgRxBps;
+    unsigned<8> GoodputAvgTxBps;
+    unsigned<8> GoodputMaxRxBps;
+    unsigned<8> GoodputMaxTxBps;
+    unsigned<8> GoodputMinRxBps;
+    unsigned<8> GoodputMinTxBps;
+
+    unsigned<8> TxAttack;
+
+    /* Duration in seconds, including aborted playlists */
+    unsigned<4> PlaylistAvgDuration;
+    unsigned<4> PlaylistMaxDuration;
+    unsigned<4> PlaylistMinDuration;
+
+    unsigned<8> LastModified;
+
+    tree<BlockIndex> BlockIndexIndex;
+    tree<Handle> HandleIndex;
+};
+
+class DpgServerResults
+{
+    unsigned<4> BlockIndex;
+    unsigned<4> Handle;
+
+    unsigned<8> ElapsedSeconds;
+
+    unsigned<4> ActiveConnections;
+    unsigned<8> TotalConnections;
+
+    unsigned<8> TotalConnectionsPerSecond;
+
+    unsigned<4> ActivePlaylists;
+    unsigned<8> TotalPlaylists;
+
+    unsigned<8> TotalPlaylistsPerSecond;
+
+    unsigned<8> GoodputRxBytes;
+    unsigned<8> GoodputTxBytes;
+    unsigned<8> GoodputRxBps;
+    unsigned<8> GoodputTxBps;
+    unsigned<8> GoodputAvgRxBps;
+    unsigned<8> GoodputAvgTxBps;
+    unsigned<8> GoodputMaxRxBps;
+    unsigned<8> GoodputMaxTxBps;
+    unsigned<8> GoodputMinRxBps;
+    unsigned<8> GoodputMinTxBps;
+
+    unsigned<8> LastModified;
+
+    tree<BlockIndex> BlockIndexIndex;
+    tree<Handle> HandleIndex;
+};

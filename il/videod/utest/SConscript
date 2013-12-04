@@ -1,0 +1,28 @@
+#
+#  Copyright (c) 2013 by Spirent Communications Inc.
+#  All Rights Reserved.
+#
+#  This software is confidential and proprietary to Spirent Communications Inc.
+#  No part of this software may be reproduced, transmitted, disclosed or used
+#  in violation of the Software License Agreement without the expressed
+#  written consent of Spirent Communications Inc.
+#
+# $Id: //TestCenter/mainline/framework/il/common/utils/scripts/SConscript#3 $
+#
+
+import os
+
+Import('*')
+
+verbosity = '' if env.get('quiet') else '-v'
+
+utest_file = 'utest.py'
+utest_file_path = env.File(utest_file).srcnode().abspath
+utest_file_cmd = 'python %s %s' % (utest_file_path, verbosity)
+utest_cmd = env.Command(utest_file, utest_file_path, utest_file_cmd)
+env.AlwaysBuild(utest_cmd)
+
+# Local Variables:
+# mode:python
+# End:
+# vim: syntax=python

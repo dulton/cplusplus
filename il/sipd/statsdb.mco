@@ -1,0 +1,176 @@
+declare database statsdb;
+
+class SipUaResults
+{
+    unsigned<4> BlockIndex;
+    unsigned<4> Handle;
+
+    unsigned<8> TotalUaCount;
+
+    unsigned<4> IntendedRegLoad;
+    unsigned<8> RegAttempts;
+    unsigned<8> RegSuccesses;
+    unsigned<8> RegRetries;
+    unsigned<8> RegFailures;
+    unsigned<8> RegMinTimeMsec;
+    unsigned<8> RegMaxTimeMsec;
+    unsigned<8> RegCummTimeMsec;
+    unsigned<8> RegAvgTimeMsec;
+
+    unsigned<8> MinResponseDelay;
+    unsigned<8> AverageResponseDelay;
+    unsigned<8> MaxResponseDelay;
+    unsigned<8> MinPostDialDelay;
+    unsigned<8> AveragePostDialDelay;
+    unsigned<8> MaxPostDialDelay;
+    unsigned<8> MinSessionAckDelay;
+    unsigned<8> AverageSessionAckDelay;
+    unsigned<8> MaxSessionAckDelay;
+    unsigned<8> MinFailedSessionSetupDelay;
+    unsigned<8> AverageFailedSessionSetupDelay;
+    unsigned<8> MaxFailedSessionSetupDelay;
+    unsigned<8> MinDisconnectResponseDelay;
+    unsigned<8> AverageDisconnectResponseDelay;
+    unsigned<8> MaxDisconnectResponseDelay;
+    unsigned<8> FailedSessionDisconnectCount;
+    unsigned<8> MinSucSessionDuration;
+    unsigned<8> AverageSucSessionDuration;
+    unsigned<8> MaxSucSessionDuration;
+    unsigned<8> MinHopsPerReq;
+    unsigned<8> AverageHopsPerReq;
+    unsigned<8> MaxHopsPerReq;
+    unsigned<8> MinUaRegFailedTime;
+    unsigned<8> AverageUaRegFailedTime;
+    unsigned<8> MaxUaRegFailedTime;
+
+    unsigned<8> ActiveCallCount;
+    unsigned<8> FailedCallTimerBCount;
+    unsigned<8> FailedCallTransErrorCount;
+    unsigned<8> FailedCall5xxCount;
+
+    unsigned<8> NonInviteSessionsInitiatedCount;
+    unsigned<8> NonInviteSessionsSucCount;
+    unsigned<8> NonInviteSessionsFailCount;
+    unsigned<8> NonInviteSessionsFailTimerFCount;
+    unsigned<8> NonInviteSessionsFailTransErrCount;
+
+    unsigned<8> TxInviteCount;
+    unsigned<8> RxInviteCount;
+    unsigned<8> ReTranInviteCount;
+    unsigned<8> TxAckCount;
+    unsigned<8> RxAckCount;
+    unsigned<8> TxByeCount;
+    unsigned<8> RxByeCount;
+    unsigned<8> ReTranByeCount;
+
+    unsigned<4> IntendedCallLoad;
+    unsigned<8> CallAttempts;
+    unsigned<8> CallSuccesses;
+    unsigned<8> CallFailures;
+    unsigned<8> CallAnswers;
+    unsigned<8> CallMinTimeMsec;
+    unsigned<8> CallMaxTimeMsec;
+    unsigned<8> CallCummTimeMsec;
+    unsigned<8> CallAvgTimeMsec;
+    
+    unsigned<8> TxResponseCode1XX;
+    unsigned<8> TxResponseCode2XX;
+    unsigned<8> TxResponseCode3XX;
+    unsigned<8> TxResponseCode4XX;
+    unsigned<8> TxResponseCode5XX;
+    unsigned<8> TxResponseCode6XX;
+
+    unsigned<8> RxResponseCode1XX;
+    unsigned<8> RxResponseCode2XX;
+    unsigned<8> RxResponseCode3XX;
+    unsigned<8> RxResponseCode4XX;
+    unsigned<8> RxResponseCode5XX;
+    unsigned<8> RxResponseCode6XX;
+    
+    double MosLqMinScore;
+    double MosLqMaxScore;
+    double MosLqAvgScore;
+
+    double MinMosCQ;
+    double MaxMosCQ;
+    double AverageMosCQ;
+
+    unsigned<1> MinRFactorLQ;
+    unsigned<1> MaxRFactorLQ;
+    unsigned<1> AverageRFactorLQ;
+
+    unsigned<1> MinRFactorCQ;
+    unsigned<1> MaxRFactorCQ;
+    unsigned<1> AverageRFactorCQ;
+
+    double AverageVoIPPpdv;
+    double MaxVoIPPpdv;
+
+    unsigned<8> RtpPacketsRx;
+    unsigned<8> RtpPacketsLost;
+    unsigned<8> RtpPacketsDiscard;
+
+    unsigned<8> MinRtpPacketsLost;
+    unsigned<8> MaxRtpPacketsLost;
+    unsigned<8> AverageRtpPacketsLost;
+
+    unsigned<8> MinRtpPacketsDiscard;
+    unsigned<8> MaxRtpPacketsDiscard;
+    unsigned<8> AverageRtpPacketsDiscard;   
+
+    double IntervalAbsMosAScore;
+    unsigned<4> AudioIntervalTransportPktRcvd;
+    unsigned<4> AudioIntervalTransportPktLost;
+    double AudioIntervalTransportPktEffLoss;
+    unsigned<4> AudioIntervalTransportPktDiscarded;    
+    double MinAbsMosAScore;
+    double AvgAbsMosAScore;
+    double MaxAbsMosAScore;
+    double AbsMosABelowThresholdProp;
+    unsigned<1> AudioPktLossDegradSev;
+    unsigned<4> AudioTransportPkt;
+    unsigned<4> AudioTransportPktLost;
+    double AudioUncorrLossProp;
+    unsigned<4> AudioBurst;
+    double AudioBurstLoss;
+    unsigned<4> AudioBurstLength;
+    unsigned<4> AudioGap;
+    double AudioGapLossRate;
+    unsigned<4> AudioGapLength;
+    double AudioPpdv;
+
+    double IntervalAbsMosVScore;
+    double IntervalRelMosVScore;
+    unsigned<4> IntervalTransportPkt;
+    unsigned<4> VideoIntervalTransportPktLost;
+    double VideoIntervalTransportPktEffLossRate;
+    unsigned<4> VideoIntervalTransportPktDiscarded;
+    double VideoIntervalAvgPpdv;
+    unsigned<4> AvgStreamVideoBw;
+    double MinAbsMosVScore;
+    double MaxAbsMosVScore;
+    double AvgAbsMosVScore;
+    double MinRelMosVScore;
+    double MaxRelMosVScore;
+    double AvgRelMosVScore;
+    unsigned<1> VideoPktLossDegradSevScore;
+    unsigned<4> VideoTransportPktCountScore;
+    unsigned<4> VideoTransportPktLost;
+    double VideoUncorrLossProp;
+    unsigned<4> VideoBurst;
+    unsigned<4> VideoBurstLength;
+    double VideoBurstLossRate;
+    unsigned<4> VideoGap;
+    double VideoGapLossRate;
+    unsigned<4> VideoGapLength;
+    double IframeInterarrivalJitter;
+    double VideoPpdv;
+
+    unsigned<8> SessionRefreshes;
+
+    unsigned<8> LastModified;
+
+    tree<BlockIndex> BlockIndexIndex;
+    tree<Handle> HandleIndex;
+};
+

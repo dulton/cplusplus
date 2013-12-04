@@ -1,0 +1,128 @@
+declare database ftpstatsdb;
+
+class FtpClientResults
+{
+    unsigned<4> BlockIndex;
+    unsigned<4> Handle;
+    
+    unsigned<8> ElapsedSeconds;
+    unsigned<4> IntendedLoad;
+
+    unsigned<8> GoodputRxBytes;
+    unsigned<8> GoodputRxBps;
+    unsigned<8> GoodputMinRxBps;
+    unsigned<8> GoodputMaxRxBps;
+    unsigned<8> GoodputAvgRxBps;
+    unsigned<8> GoodputTxBytes;
+    unsigned<8> GoodputTxBps;
+    unsigned<8> GoodputMinTxBps;
+    unsigned<8> GoodputMaxTxBps;
+    unsigned<8> GoodputAvgTxBps;
+    
+    unsigned<4> ActiveConnections;
+
+    unsigned<8> AttemptedConnections;
+    unsigned<8> AttemptedConnectionsPerSecond;
+    unsigned<8> SuccessfulConnections;
+    unsigned<8> SuccessfulConnectionsPerSecond;
+    unsigned<8> UnsuccessfulConnections;
+    unsigned<8> UnsuccessfulConnectionsPerSecond;
+    unsigned<8> AbortedConnections;
+    unsigned<8> AbortedConnectionsPerSecond;
+
+    unsigned<8> AttemptedTransactions;
+    unsigned<8> AttemptedTransactionsPerSecond;
+    unsigned<8> SuccessfulTransactions;
+    unsigned<8> SuccessfulTransactionsPerSecond;
+    unsigned<8> UnsuccessfulTransactions;
+    unsigned<8> UnsuccessfulTransactionsPerSecond;
+    unsigned<8> AbortedTransactions;
+    unsigned<8> AbortedTransactionsPerSecond;
+    
+    unsigned<8> AvgFileTransferBps;
+    
+    unsigned<8> RxResponseCode150;       
+    unsigned<8> RxResponseCode200;
+    unsigned<8> RxResponseCode220;
+    unsigned<8> RxResponseCode226;
+    unsigned<8> RxResponseCode227;
+    unsigned<8> RxResponseCode230;
+    unsigned<8> RxResponseCode331;
+    unsigned<8> RxResponseCode425;
+    unsigned<8> RxResponseCode426;
+    unsigned<8> RxResponseCode452;
+    unsigned<8> RxResponseCode500;
+    unsigned<8> RxResponseCode502;
+    unsigned<8> RxResponseCode530;
+
+    unsigned<8> LastModified;
+
+    tree<BlockIndex> BlockIndexIndex;
+    tree<Handle> HandleIndex;
+};
+
+class FtpServerResults
+{
+    unsigned<4> BlockIndex;
+    unsigned<4> Handle;
+    
+    unsigned<8> ElapsedSeconds;
+    
+    unsigned<8> GoodputRxBytes;
+    unsigned<8> GoodputRxBps;
+    unsigned<8> GoodputMinRxBps;
+    unsigned<8> GoodputMaxRxBps;
+    unsigned<8> GoodputAvgRxBps;
+    unsigned<8> GoodputTxBytes;
+    unsigned<8> GoodputTxBps;
+    unsigned<8> GoodputMinTxBps;
+    unsigned<8> GoodputMaxTxBps;
+    unsigned<8> GoodputAvgTxBps;
+    
+    unsigned<8> TotalControlConnections;
+    unsigned<8> TotalControlConnectionsPerSecond;
+    unsigned<8> AbortedControlConnections;
+    unsigned<8> AbortedControlConnectionsPerSecond;
+
+    unsigned<4> ActiveControlConnections;
+
+    unsigned<8> TotalDataConnections;
+    unsigned<8> TotalDataConnectionsPerSecond;
+
+    unsigned<8> RxUserCmd;       
+    unsigned<8> RxPassCmd;
+    unsigned<8> RxTypeCmd;
+    unsigned<8> RxPortCmd;
+    unsigned<8> RxRetrCmd;
+    unsigned<8> RxQuitCmd;    
+
+    unsigned<8> AttemptedTransactions;
+    unsigned<8> AttemptedTransactionsPerSecond;
+    unsigned<8> SuccessfulTransactions;
+    unsigned<8> SuccessfulTransactionsPerSecond;
+    unsigned<8> UnsuccessfulTransactions;
+    unsigned<8> UnsuccessfulTransactionsPerSecond;
+    unsigned<8> AbortedTransactions;
+    unsigned<8> AbortedTransactionsPerSecond;
+
+    unsigned<8> TxResponseCode150;       
+    unsigned<8> TxResponseCode200;
+    unsigned<8> TxResponseCode220;
+    unsigned<8> TxResponseCode226;
+    unsigned<8> TxResponseCode227;
+    unsigned<8> TxResponseCode230;
+    unsigned<8> TxResponseCode331;
+    unsigned<8> TxResponseCode425;
+    unsigned<8> TxResponseCode426;
+    unsigned<8> TxResponseCode452;
+    unsigned<8> TxResponseCode500;
+    unsigned<8> TxResponseCode502;
+    unsigned<8> TxResponseCode530;
+
+    unsigned<8> LastModified;
+    
+    tree<BlockIndex> BlockIndexIndex;
+    tree<Handle> HandleIndex;
+};
+
+

@@ -1,0 +1,82 @@
+declare database statsdb;
+
+class RawTcpClientResults
+{
+    unsigned<4> BlockIndex;
+    unsigned<4> Handle;
+
+    unsigned<8> ElapsedSeconds;
+    unsigned<4> IntendedLoad;
+
+    unsigned<8> AttemptedConnections;
+    unsigned<4> ActiveConnections;
+    unsigned<8> SuccessfulConnections;
+    unsigned<8> UnsuccessfulConnections;
+    unsigned<8> AbortedConnections;
+
+    unsigned<8> AttemptedConnectionsPerSecond;
+    unsigned<8> SuccessfulConnectionsPerSecond;
+    unsigned<8> UnsuccessfulConnectionsPerSecond;
+    unsigned<8> AbortedConnectionsPerSecond;
+
+    unsigned<8> AttemptedTransactions;
+    unsigned<8> SuccessfulTransactions;
+    unsigned<8> UnsuccessfulTransactions;
+    unsigned<8> AbortedTransactions;
+
+    unsigned<8> AttemptedTransactionsPerSecond;
+    unsigned<8> SuccessfulTransactionsPerSecond;
+    unsigned<8> UnsuccessfulTransactionsPerSecond;
+    unsigned<8> AbortedTransactionsPerSecond;
+
+    unsigned<8> GoodputRxBytes;
+    unsigned<8> GoodputTxBytes;
+    unsigned<8> GoodputRxBps;
+    unsigned<8> GoodputTxBps;
+    unsigned<8> GoodputAvgRxBps;
+    unsigned<8> GoodputAvgTxBps;
+    unsigned<8> GoodputMaxRxBps;
+    unsigned<8> GoodputMaxTxBps;
+    unsigned<8> GoodputMinRxBps;
+    unsigned<8> GoodputMinTxBps;
+
+    unsigned<8> LastModified;
+
+    tree<BlockIndex> BlockIndexIndex;
+    tree<Handle> HandleIndex;
+};
+
+class RawTcpServerResults
+{
+    unsigned<4> BlockIndex;
+    unsigned<4> Handle;
+
+    unsigned<8> ElapsedSeconds;
+
+    unsigned<4> ActiveConnections;
+    unsigned<8> TotalConnections;
+
+    unsigned<8> TotalConnectionsPerSecond;
+
+    unsigned<8> SuccessfulTransactions;
+    unsigned<8> UnsuccessfulTransactions;
+
+    unsigned<8> SuccessfulTransactionsPerSecond;
+    unsigned<8> UnsuccessfulTransactionsPerSecond;
+
+    unsigned<8> GoodputRxBytes;
+    unsigned<8> GoodputTxBytes;
+    unsigned<8> GoodputRxBps;
+    unsigned<8> GoodputTxBps;
+    unsigned<8> GoodputAvgRxBps;
+    unsigned<8> GoodputAvgTxBps;
+    unsigned<8> GoodputMaxRxBps;
+    unsigned<8> GoodputMaxTxBps;
+    unsigned<8> GoodputMinRxBps;
+    unsigned<8> GoodputMinTxBps;
+
+    unsigned<8> LastModified;
+
+    tree<BlockIndex> BlockIndexIndex;
+    tree<Handle> HandleIndex;
+};

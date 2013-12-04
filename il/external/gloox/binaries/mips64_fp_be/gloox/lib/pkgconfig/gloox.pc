@@ -1,0 +1,10 @@
+prefix=/home/cle/perforce/workspaces/cle_catcher_p4_dev_xmpp/TestCenter/p4_dev_xmpp/content/traffic/l4l7/il/external/gloox/binaries/mips64_fp_be/gloox
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: gloox
+Description: A high-level XMPP/Jabber library for C++
+Version: 1.0
+Libs: -L${libdir} -lgloox
+Cflags: -I${includedir}

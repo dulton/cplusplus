@@ -1,0 +1,21 @@
+-include ../../../env.mak
+CONFIGURE=${GLOOX_WORK_HOME}/libgpg-error-1.9/configure
+
+all:${recompile}
+	make -f Makefile install
+	touch ${recompile}
+
+clean:
+	[ -e Makefile ] && make -f Makefile distclean || exit 0
+	rm -f Makefile
+	rm -f ${recompile} 
+	rm -rf lang m4 po  src tests
+
+${recompile}:
+	${CONFIGURE} --host=${HOST} --prefix=${PREFIX}/libgpg-error --disable-option-checking \
+		--disable-dependency-tracking \
+		--enable-static\
+		--disable-shared 
+
+
+

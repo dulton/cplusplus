@@ -1,0 +1,1 @@
+<iq to='pubsub.%S' id='msg-%M' type='set'><pubsub xmlns='http://jabber.org/protocol/pubsub'><publish node='%U@%S'><item id='%M'><tune xmlns='http://jabber.org/protocol/tune'><artist type='Type_of_Capabilities'>%C</artist></tune></item></publish></pubsub></iq>

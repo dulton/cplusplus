@@ -1,0 +1,11 @@
+import os
+Import('*')
+
+e = env.Clone()
+tgt='all'
+if GetOption('clean'):
+    tgt='clean'
+
+obj=os.system('make -f Makefile.SPIRENT '+tgt)
+
+AlwaysBuild(obj)

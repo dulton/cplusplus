@@ -1,0 +1,152 @@
+declare database statsdb;
+
+class HttpClientResults
+{
+    unsigned<4> BlockIndex;
+    unsigned<4> Handle;
+    
+    unsigned<8> ElapsedSeconds;
+    unsigned<4> IntendedLoad;
+
+    unsigned<8> GoodputRxBytes;
+    unsigned<8> GoodputRxBps;
+    unsigned<8> GoodputMinRxBps;
+    unsigned<8> GoodputMaxRxBps;
+    unsigned<8> GoodputAvgRxBps;
+    unsigned<8> GoodputTxBytes;
+    unsigned<8> GoodputTxBps;
+    unsigned<8> GoodputMinTxBps;
+    unsigned<8> GoodputMaxTxBps;
+    unsigned<8> GoodputAvgTxBps;
+
+    unsigned<4> ActiveConnections;
+
+    unsigned<8> AttemptedConnections;
+    unsigned<8> AttemptedConnectionsPerSecond;
+    unsigned<8> SuccessfulConnections;
+    unsigned<8> SuccessfulConnectionsPerSecond;
+    unsigned<8> UnsuccessfulConnections;
+    unsigned<8> UnsuccessfulConnectionsPerSecond;
+    unsigned<8> AbortedConnections;
+    unsigned<8> AbortedConnectionsPerSecond;
+    
+    unsigned<8> AttemptedTransactions;
+    unsigned<8> AttemptedTransactionsPerSecond;
+    unsigned<8> SuccessfulTransactions;
+    unsigned<8> SuccessfulTransactionsPerSecond;
+    unsigned<8> UnsuccessfulTransactions;
+    unsigned<8> UnsuccessfulTransactionsPerSecond;
+    unsigned<8> AbortedTransactions;
+    unsigned<8> AbortedTransactionsPerSecond;
+
+    unsigned<8> MinResponseTimePerUrlMsec;
+    unsigned<8> MaxResponseTimePerUrlMsec;
+    unsigned<8> AvgResponseTimePerUrlMsec;
+    unsigned<8> SumResponseTimePerUrlMsec;
+
+    unsigned<8> RxResponseCode200;       
+    unsigned<8> RxResponseCode400;
+    unsigned<8> RxResponseCode404;
+    unsigned<8> RxResponseCode405;
+    
+    unsigned<8> LastModified;
+
+    tree<BlockIndex> BlockIndexIndex;
+    tree<Handle> HandleIndex;
+};
+
+class HttpServerResults
+{
+    unsigned<4> BlockIndex;
+    unsigned<4> Handle;
+    
+    unsigned<8> ElapsedSeconds;
+    
+    unsigned<8> GoodputRxBytes;
+    unsigned<8> GoodputRxBps;
+    unsigned<8> GoodputMinRxBps;
+    unsigned<8> GoodputMaxRxBps;
+    unsigned<8> GoodputAvgRxBps;
+    unsigned<8> GoodputTxBytes;
+    unsigned<8> GoodputTxBps;
+    unsigned<8> GoodputMinTxBps;
+    unsigned<8> GoodputMaxTxBps;
+    unsigned<8> GoodputAvgTxBps;
+
+    unsigned<8> TotalConnections;
+    unsigned<8> TotalConnectionsPerSecond;
+
+    unsigned<4> ActiveConnections;
+
+    unsigned<8> SuccessfulTransactions;
+    unsigned<8> SuccessfulTransactionsPerSecond;
+    unsigned<8> UnsuccessfulTransactions;
+    unsigned<8> UnsuccessfulTransactionsPerSecond;
+
+    unsigned<8> TxResponseCode200;       
+    unsigned<8> TxResponseCode400;
+    unsigned<8> TxResponseCode404;
+    unsigned<8> TxResponseCode405;
+    
+    unsigned<8> LastModified;
+
+    tree<BlockIndex> BlockIndexIndex;
+    tree<Handle> HandleIndex;
+};
+
+class HttpVideoClientResults
+{
+    unsigned<4> BlockIndex;
+    unsigned<4> Handle;
+    
+    unsigned<8> AsSessionsAttempted;
+    unsigned<8> AsSessionsSuccessful;
+    unsigned<8> AsSessionsUnsuccessful;
+    unsigned<8> ManifestReqsAttempted;
+    unsigned<8> ManifestReqsSuccessful;
+    unsigned<8> ManifestReqsUnsuccessful;
+    unsigned<8> MinBufferingWaitTime;
+    unsigned<8> AvgBufferingWaitTime;
+	unsigned<8> MaxBufferingWaitTime;
+    unsigned<8> MediaFragmentsRx64kbps;
+    unsigned<8> MediaFragmentsRx96kbps;
+    unsigned<8> MediaFragmentsRx150kbps;
+    unsigned<8> MediaFragmentsRx240kbps;
+    unsigned<8> MediaFragmentsRx256kbps;
+    unsigned<8> MediaFragmentsRx440kbps;
+    unsigned<8> MediaFragmentsRx640kbps;
+    unsigned<8> MediaFragmentsRx800kbps;
+    unsigned<8> MediaFragmentsRx840kbps;
+    unsigned<8> MediaFragmentsRx1240kbps;
+    
+    unsigned<8> LastModified;
+
+    tree<BlockIndex> BlockIndexIndex;
+    tree<Handle> HandleIndex;
+};
+
+class HttpVideoServerResults
+{
+    unsigned<4> BlockIndex;
+    unsigned<4> Handle;
+    
+    unsigned<8> TotalManifestFilesTx;
+    unsigned<8> MediaFragmentsTx64kbps;
+    unsigned<8> MediaFragmentsTx96kbps;
+    unsigned<8> MediaFragmentsTx150kbps;
+    unsigned<8> MediaFragmentsTx240kbps;
+    unsigned<8> MediaFragmentsTx256kbps;
+    unsigned<8> MediaFragmentsTx440kbps;
+    unsigned<8> MediaFragmentsTx640kbps;
+    unsigned<8> MediaFragmentsTx800kbps;
+    unsigned<8> MediaFragmentsTx840kbps;
+    unsigned<8> MediaFragmentsTx1240kbps;
+    
+    unsigned<8> LastModified;
+
+    tree<BlockIndex> BlockIndexIndex;
+    tree<Handle> HandleIndex;
+};
+
+
+

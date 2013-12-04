@@ -1,0 +1,103 @@
+#
+#  Copyright (c) 2008 by Spirent Communications Inc.
+#  All Rights Reserved.
+#
+#  This software is confidential and proprietary to Spirent Communications Inc.
+#  No part of this software may be reproduced, transmitted, disclosed or used
+#  in violation of the Software License Agreement without the expressed
+#  written consent of Spirent Communications Inc.
+#
+# $Id: //TestCenter/mainline/framework/il/common/utils/scripts/SConscript#3 $
+#
+
+import sys, os
+
+Import('*')
+
+e = env.Clone()
+
+sys.path.append(os.path.join(conf['top_dir'], 'framework/common/pymodule'))
+
+# set IDLPATH before loading mps.idl
+idlpath = ':'.join(env['IDLPATH'].strip('"').split())
+os.environ['IDLPATH'] = idlpath
+
+module_name = 'video'
+module_dir = os.path.join(conf['bin_blddir'], module_name)
+
+stats_schema = 'statsdb.mco'
+
+bins = [
+    'videod',
+    ]
+
+startup_scripts = [
+    'video.sh'
+    ]
+
+pyfiles = [
+    'app.py',
+    'cache.py',
+    'client.py',
+    'constants.py',
+    'rtspclient.py',
+    'rtspproto.py',
+    'rtspserver.py',
+    'server.py',
+    'streamer.py',
+    'timer.py',
+    'utils.py',
+    'video_1.py',
+    'videod.py',
+    ]
+
+idl_files = [ 'video_1.idl',
+              'video_Autogen.idl',
+              ]
+
+idls_files = [ 'video_1.idl',
+               ]
+
+lib_files = [
+    stats_schema,
+    ]
+
+def install_files(installdir, flist, srcdir=""):
+    for f in flist:
+        utils.install(e, e.Command(os.path.join(installdir, f), os.path.join(srcdir, f), "cp -f $SOURCE $TARGET"))
+
+# Manual IDL file dependencies
+e.Depends('#content/traffic/l4l7/idl/video_Autogen.idl', '#content/traffic/l4l7/idl/l4l7Base_1.idl')
+e.Depends('#content/traffic/l4l7/idl/video_1.idl', '#content/traffic/l4l7/idl/video_Autogen.idl')
+
+# Compile and install python sources
+utils.pycompile(e, module_dir, pyfiles)
+
+# Install binaries and scripts
+install_files(conf['bin_blddir'], bins)
+install_files(os.path.join(conf['script_startup_blddir'], 'stc'), startup_scripts)
+
+# Install library files
+install_files(os.path.join(conf['lib_blddir'], module_name), lib_files)
+
+# Install IDL files
+install_files(conf['idl_blddir'], idl_files, os.path.join(conf['top_dir'], 'content', 'traffic', 'l4l7', 'idl'))
+
+for file in idls_files:
+    utils.install(e, e.PyIdlsBuilder(os.path.join(conf['idl_blddir'], file+'s'), os.path.join(conf['top_dir'], 'content', 'traffic', 'l4l7', 'idl', file)))
+
+# Compile and install the stats database
+e['CPPPATH'] += [ conf['eXtremeDB_srcdir'] + '/include' ]
+e['LIBS'] += e['LIB_DB']
+
+e.MCOBuilder(target=['statsdb.c', 'statsdb.h'], source='statsdb.mco')
+utils.installSharedLib(e, e.SharedLibrary(target=os.path.join(conf['lib_dir'], '%sstatsdb' % module_name), source=['statsdb.c']))
+
+# Unit test
+if e['utest'] :
+    utest = SConscript(os.path.join('utest', 'SConscript'))
+
+# Local Variables:
+# mode:python
+# End:
+# vim: syntax=python

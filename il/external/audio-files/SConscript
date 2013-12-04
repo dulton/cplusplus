@@ -1,0 +1,80 @@
+#
+#  Copyright (c) 2010 by Spirent Communications Inc.
+#  All Rights Reserved.
+#
+#  This software is confidential and proprietary to Spirent Communications Inc.
+#  No part of this software may be reproduced, transmitted, disclosed or used
+#  in violation of the Software License Agreement without the expressed
+#  written consent of Spirent Communications Inc.
+#
+# $Id:$
+#
+
+import os, glob
+
+Import('*')
+
+audio_dir = os.path.join(conf['lib_dir'], 'audio', 'enc')
+
+audio_files = [ 
+				'enc/amr_nb_be_0.rtp',
+				'enc/amr_nb_be_1.rtp',
+				'enc/amr_nb_be_2.rtp',
+				'enc/amr_nb_be_3.rtp',
+				'enc/amr_nb_be_4.rtp',
+				'enc/amr_nb_be_5.rtp',
+				'enc/amr_nb_be_6.rtp',
+				'enc/amr_nb_be_7.rtp',
+				'enc/amr_nb_oa_0.rtp',
+				'enc/amr_nb_oa_1.rtp',
+				'enc/amr_nb_oa_2.rtp',
+				'enc/amr_nb_oa_3.rtp',
+				'enc/amr_nb_oa_4.rtp',
+				'enc/amr_nb_oa_5.rtp',
+				'enc/amr_nb_oa_6.rtp',
+				'enc/amr_nb_oa_7.rtp',
+				'enc/amr_wb_be_0.rtp',
+				'enc/amr_wb_be_1.rtp',
+				'enc/amr_wb_be_2.rtp',
+				'enc/amr_wb_be_3.rtp',
+				'enc/amr_wb_be_4.rtp',
+				'enc/amr_wb_be_5.rtp',
+				'enc/amr_wb_be_6.rtp',
+				'enc/amr_wb_be_7.rtp',
+				'enc/amr_wb_be_8.rtp',
+				'enc/amr_wb_oa_0.rtp',
+				'enc/amr_wb_oa_1.rtp',
+				'enc/amr_wb_oa_2.rtp',
+				'enc/amr_wb_oa_3.rtp',
+				'enc/amr_wb_oa_4.rtp',
+				'enc/amr_wb_oa_5.rtp',
+				'enc/amr_wb_oa_6.rtp',
+				'enc/amr_wb_oa_7.rtp',
+				'enc/amr_wb_oa_8.rtp',
+                'enc/VH264video.rtp',
+                'enc/AACLDaudio.rtp',
+                'enc/VH264_1080P_video.rtp',
+                'enc/VH264_TBG_1080P_video.rtp',
+                'enc/VH264_TBG_720P_video.rtp',
+                'enc/VH264_TBG_CIF_video.rtp',
+                'enc/VH264_TBG_XGA_video.rtp',
+                'enc/OSR_uk_000_0051_8k_cut_G711A_64.enc',
+                'enc/OSR_uk_000_0051_8k_cut_G711MU_64.enc',
+                'enc/OSR_uk_000_0051_8k_cut_G723_5_3.enc',
+                'enc/OSR_uk_000_0051_8k_cut_G723_6_3.enc',
+                'enc/OSR_uk_000_0051_8k_cut_G726_32.enc',
+                'enc/OSR_uk_000_0051_8k_cut_G729_8.enc',
+                'enc/OSR_uk_000_0051_8k_cut_G729A_8.enc',
+                'enc/OSR_uk_000_0051_8k_cut_G729AB_8.enc',
+                'enc/OSR_uk_000_0051_8k_cut_G729B_8.enc' 
+                ]
+
+# Install sample videos
+for file in audio_files:
+    target = os.path.join(audio_dir, os.path.basename(file))
+    utils.install(env, env.Command(target, file, 'cp -f $SOURCE $TARGET'))
+
+# Local Variables:
+# mode:python
+# End:
+# vim: syntax=python

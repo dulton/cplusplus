@@ -1,0 +1,29 @@
+#
+#  Copyright (c) 2008 by Spirent Communications Inc.
+#  All Rights Reserved.
+#
+#  This software is confidential and proprietary to Spirent Communications Inc.
+#  No part of this software may be reproduced, transmitted, disclosed or used
+#  in violation of the Software License Agreement without the expressed
+#  written consent of Spirent Communications Inc.
+#
+# $Id: //TestCenter/mainline/framework/il/common/utils/scripts/SConscript#3 $
+#
+
+import os, glob
+
+Import('*')
+
+clip_dir = os.path.join(conf['lib_dir'], 'video', 'clips')
+
+video_clips = [ 'Spirent_SDTV_Football_MainConcept_H264_cbr1mbps_96kaudio.mpg' ]
+
+# Install sample videos
+for file in video_clips:
+    target = os.path.join(clip_dir, os.path.basename(file))
+    utils.install(env, env.Command(target, file, 'cp -f $SOURCE $TARGET'))
+
+# Local Variables:
+# mode:python
+# End:
+# vim: syntax=python

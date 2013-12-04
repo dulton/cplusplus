@@ -1,0 +1,22 @@
+-include ../../../env.mak
+CONFIGURE=${GLOOX_WORK_HOME}/nettle-2.4/configure
+
+all:${recompile}
+	make -f Makefile install
+	touch ${recompile}
+
+clean:
+	[ -e Makefile ] && make -f Makefile  distclean || exit 0
+	rm -f Makefile
+	rm -f ${recompile}
+	rm -rf examples  testsuite  tools
+
+${recompile}:
+	${CONFIGURE} --host=${HOST} --prefix=${PREFIX}/nettle --disable-option-checking \
+		--disable-dependency-tracking \
+		--enable-static\
+		--disable-openssl\
+		--disable-shared \
+		--enable-public-key\
+		--with-lib-path=${PREFIX}/libgmp/lib\
+		--with-include-path=${PREFIX}/libgmp/include

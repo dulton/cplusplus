@@ -1,0 +1,11 @@
+prefix=/home/cle/perforce/workspaces/cle_catcher_p4_dev_xmpp/TestCenter/p4_dev_xmpp/content/traffic/l4l7/il/external/gloox/binaries/pentium3/nettle
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: Nettle
+Description: Nettle low-level cryptographic library (symmetric algorithms)
+URL: http://www.lysator.liu.se/~nisse/nettle
+Version: 2.4
+Libs: -L${libdir} -lnettle
+Cflags: -I${includedir}

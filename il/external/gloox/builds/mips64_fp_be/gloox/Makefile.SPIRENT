@@ -1,0 +1,30 @@
+-include ../../../env.mak
+CONFIGURE=${GLOOX_WORK_HOME}/gloox-1.0/configure
+
+LDFLAGS+=-L${PREFIX}/gnutls/lib -lgnutls
+LDFLAGS+=-L${PREFIX}/nettle/lib -lnettle -lhogweed
+LDFLAGS+=-L${PREFIX}/libgcrypt/lib -lgcrypt
+LDFLAGS+=-L${PREFIX}/libgmp/lib -lgmp
+LDFLAGS+=-lpthread -lz
+CXXFLAGS+=-isystem ${PREFIX}/gnutls/include
+
+all:${recompile}
+	autoreconf --force ${GLOOX_WORK_HOME}/gloox-1.0
+	make -f Makefile install
+	touch ${recompile}
+
+clean:
+	[ -e Makefile ] && make -f Makefile  distclean || exit 0
+	rm -f Makefile
+	rm -f ${recompile}
+	rm -rf src
+
+${recompile}:
+	${CONFIGURE} --host=${HOST} --prefix=${PREFIX}/gloox --disable-option-checking \
+		--disable-dependency-tracking \
+		--enable-static\
+		--disable-shared \
+		--without-tests\
+		--without-openssl\
+		LIBS="${LDFLAGS}"\
+		CXXFLAGS="${CXXFLAGS}"

@@ -1,0 +1,108 @@
+--- INTRODUCTION ---
+
+This library provides an implementation of the Telepresence
+Interoperability Protocol (TIP) as defined in:
+
+http://www.imtc.org/tip
+
+The library provides multiple C++ interfaces, each of which is useful
+for implementing different parts of a TIP system.  For more
+information on the library API please see:
+
+http://master.dl.sourceforge.net/project/tiprotocol/TIP-LibraryAPIGuide.pdf
+
+For more information including detailed class and API descriptions
+please see:
+
+http://tiprotocol.sourceforge.net/
+http://tiprotocol.sourceforge.net/doxygen/
+
+--- BUILDING FROM A DISTRIBUTION TAR FILE ---
+
+To build the library simply run:
+
+./configure; make
+
+To install the library simply run:
+
+make install
+
+For options controlling the library build process run:
+
+./configure --help
+
+The library contains a test tool which can parse and print TIP packet
+information from PCAP files (e.g. tcpdump).  Building this tool
+requires libpcap (tested against version 0.8.3 but other versions may
+work) be installed on your system.  To build the tip pcap tool run:
+
+./configure --enable-pcaptest
+make
+cd test/pcap
+./tip_pcap --help
+
+--- FOR TIP LIBRARY DEVELOPERS ---
+
+You can download the TIP library source code from Sourceforge
+mercurial using the following command:
+
+hg clone http://tiprotocol.hg.sourceforge.net:8000/hgroot/tiprotocol/tiprotocol
+
+or for read/write access (assuming you have permissions, and replacing
+USERNAME with your sourceforge username):
+
+hg clone ssh://USERNAME@tiprotocol.hg.sourceforge.net/hgroot/tiprotocol/tiprotocol
+
+To build the library via source code checkout run:
+
+./autogen.sh; make
+
+Or on MacOS:
+
+LIBTOOLIZE=glibtoolize ./autogen.sh; make
+
+The library contains a robust set of unit test cases which can be
+built by running configure as follows:
+
+./configure --enable-unittest
+
+The library unit tests require the CPPUNIT library (tested against
+version 1.12.1 but other versions may work) which can be downloaded
+from:
+
+http://sourceforge.net/apps/mediawiki/cppunit/index.php?title=Main_Page
+
+If the CPPUNIT include and library file are installed in a
+non-standard location use the --with-CPPUNIT option to configure to
+specify the location.
+
+Unit test files are stored in the lib/*/test directories.  You can run
+tests from a single directory or all directories by executing 'make
+check' from the root or test directory.
+
+The library includes a utility script called 'gcov_tip' which utilizes
+the gcov tool (part of the gcc suite of tools) to produce code
+coverage results for the unit tests.  The gcov tool requires that the
+code be recompiled with the following compiler options:
+
+./configure --enable-unittest --enable-shared=no CXXFLAGS="-fprofile-arcs -ftest-coverage"
+make clean; make
+./gcov_tip
+
+More information on gcov can be found here:
+
+http://gcc.gnu.org/onlinedocs/gcc/Gcov.html
+
+The library includes doxygen style comments for many of the main user
+facing APIs.  It also includes a wrapper script that can be used to
+create the doxygen output (in html form).  The script requires that
+doxygen be installed on your local machine and in your PATH
+environmental variable.
+
+./doxygen.sh
+
+The html files created from running the script are placed in the
+doxygen-doc subdirectory in the root of the library source tree.  More
+information on doxygen can be found here:
+
+http://www.doxygen.org/

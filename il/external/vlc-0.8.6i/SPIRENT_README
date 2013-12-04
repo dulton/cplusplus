@@ -1,0 +1,43 @@
+# Steps to build (e.g. mips):
+
+cd ../libdvbpsi5-0.1.6
+p4 sync aclocal.m4@0
+./bootstrap
+
+cd ../vlc-0.8.6i
+p4 sync aclocal.m4@0
+./bootstrap
+
+p4 edit mips-fp_be/...
+
+./build-mips.sh
+
+p4 edit mips-octeon/...
+
+./build-mips.octeon.sh
+
+p4 edit i386-pentium3/...
+
+./build-pentium3.sh
+
+p4 edit i386-pentium4/...
+
+./build-pentium4.sh
+
+# Other notes
+# Spirent changes are marked SPIRENT_CHANGES
+# As tools change it sometimes becomes necessary to disable new things in 
+# the build-*.sh files (check configure).
+#
+# On capella4 --enable-libtool must be added because with it disabled
+# libtool is still used to link and modern libtools don't work well with
+# objects that are not also compiled though libtool. Also freetype, gnomevfs, 
+# and libxml2 had to be disabled in the call to configure.
+#
+# On a build machine the build will attempt to write to the --includedir
+# in configure, which is usually not writable. It seems safe to remove those
+# lines (pkgincludedir and dist_pkginclude_HEADERS in src/Makefile.am)
+#
+# Finally, if bootstrap finds autopoint instead of gettext, you might
+# have to open all the .po files in po/ for edit.
+#

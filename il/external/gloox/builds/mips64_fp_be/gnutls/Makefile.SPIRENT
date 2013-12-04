@@ -1,0 +1,39 @@
+-include ../../../env.mak
+
+CONFIGURE=${GLOOX_WORK_HOME}/gnutls-3.0.3/configure
+DIR=${PWD}
+
+EXTRA_LDFLAGS+=-L${PREFIX}/libgmp/lib
+EXTRA_LIBS+=-lgmp
+DFT_INCLUDES+=-I${DIR} -I${DIR}/lib/includes
+
+all:${recompile}
+	make INCLUDES="${DFT_INCLUDES}" -f Makefile install
+	mkdir -p ${PREFIX}/pkgconfig
+	install ${PREFIX}/gnutls/lib/pkgconfig/*.pc ${PREFIX}/pkgconfig/
+	touch ${recompile}
+
+clean:
+	[ -e Makefile ] && make -f Makefile  distclean || exit 0
+	rm -f Makefile
+	rm -f ${recompile}
+	rm -rf gl  guile  lib  libextra  po src
+
+${recompile}:
+	${CONFIGURE} --host=${HOST} --prefix=${PREFIX}/gnutls --disable-option-checking \
+		--disable-dependency-tracking \
+		--enable-static\
+		--without-doc \
+		--disable-gtk-doc-html \
+		--disable-gtk-doc\
+		--disable-gtk-doc-pdf\
+		--disable-shared \
+		--disable-openssl-compatibility\
+		--without-p11-kit\
+		--disable-guile\
+		--disable-cxx\
+		--with-included-libtasn1\
+		--with-libnettle-prefix=${PREFIX}/nettle\
+		--with-libgcrypt-prefix=${PREFIX}/libgcrypt\
+		LIBS="${EXTRA_LIBS}"\
+		LDFLAGS="${EXTRA_LDFLAGS}"

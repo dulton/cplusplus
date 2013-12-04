@@ -1,0 +1,24 @@
+import os
+Import('*')
+
+e = env.Clone()
+tgt='all'
+if GetOption('clean'):
+    tgt='clean'
+
+arch_full_name = conf['arch_name'] + "_" + conf['arch_variant']
+
+os.environ['MVISTA']='on'
+os.environ['TARGET_CPU']=arch_full_name
+os.environ['CROSS_COMPILE']='on'
+
+if conf.has_key('compiler_sysroot'):
+    os.environ['CFLAGS']='--sysroot=%s' % conf['compiler_sysroot']
+
+if e['debug']:
+    os.environ['RELEASE']='off'
+else:
+    os.environ['RELEASE']='on'
+obj=os.system('make '+tgt)
+
+AlwaysBuild(obj)

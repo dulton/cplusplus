@@ -1,0 +1,92 @@
+#
+#  Copyright (c) 2006 by Spirent Communications Inc.
+#  All Rights Reserved.
+#
+#  This software is confidential and proprietary to Spirent Communications Inc.
+#  No part of this software may be reproduced, transmitted, disclosed or used
+#  in violation of the Software License Agreement without the expressed
+#  written consent of Spirent Communications Inc.
+#
+# $Id: //TestCenter/p2.30_dev_ifmgr/content/traffic/l2l3/il/Generator/Learning/utest/SConscript#1 $
+#
+
+import os
+
+Import('*')
+
+e = env.Clone()
+
+utest_sources = [
+    'TestXmppApplication.cpp',
+    'TestXmppUtilities.cpp',
+#    'TestXmppProtocol.cpp',
+    ]
+
+#e['CPPPATH'] += [ '.',
+#                  '..',
+#'#content/traffic/l4l7/il',
+#                  '#framework/il/common/lib', 
+#    ]
+gloox_lib_dir=conf['compiler_prefix'][0:-1]
+e['CPPPATH'] += [ '.',
+                  '..',
+                  '#content/traffic/l4l7/il',
+                  '#framework/il/common/lib',
+                  '#framework/il/common/include',
+                  '#content/traffic/l4l7/il/external/gloox/binaries/'+gloox_lib_dir+'/gloox/include/gloox',
+                  '#common/tools/xercesc/src',
+                  conf['eXtremeDB_srcdir'] + '/include',
+                  ]
+
+e['LIBS'] += [ 'l4l7app',
+               'l4l7base',
+               'l4l7utils',
+               'statsframework',
+               'gloox',
+               'gnutls',
+               'nettle',
+               'hogweed',
+               'gcrypt',
+               'gmp',
+               'pthread',
+               'resolv',
+               'z',
+               'xerces-c',
+               ]
+e['LIBS'] += e['LIB_DB']
+
+gloox_lib_dir=conf['compiler_prefix'][0:-1]
+boostVersion = '1_39'
+
+if conf['arch_variant'].find('octeon') != -1:
+    gccVersion = '41'
+else:
+    gccVersion = '34'
+
+e['LIBS'] += ['boost_filesystem-gcc%s-s-%s' % (gccVersion, boostVersion)]
+e['LIBS'] += ['boost_system-gcc%s-s-%s' % (gccVersion, boostVersion)]
+e['LIBPATH'] += ['#/content/traffic/l4l7/il/external/gloox/binaries/'+gloox_lib_dir+'/gloox/lib/']
+e['LIBPATH'] += ['#/content/traffic/l4l7/il/external/gloox/binaries/'+gloox_lib_dir+'/gnutls/lib/']
+e['LIBPATH'] += ['#/content/traffic/l4l7/il/external/gloox/binaries/'+gloox_lib_dir+'/nettle/lib/']
+e['LIBPATH'] += ['#/content/traffic/l4l7/il/external/gloox/binaries/'+gloox_lib_dir+'/libgcrypt/lib/']
+e['LIBPATH'] += ['#/content/traffic/l4l7/il/external/gloox/binaries/'+gloox_lib_dir+'/libgmp/lib/']
+e['LIBPATH'] += ['#/content/traffic/l4l7/il/external/gloox/prebuilds/'+gloox_lib_dir+'/']
+
+#fix the conflicts on libxerces-c
+if not GetOption('clean'):
+    src=os.path.join(conf['top_dir'],os.path.join(conf['lib_dir'])[2:])+'/libxerces-c.so.27.0'
+    dst=src[0:-2]
+    if not os.path.isfile(dst):
+        if os.path.exists(src):
+            os.symlink(src,dst)
+
+testname = 'xmppd_utest'
+target = os.path.join(conf['utest_blddir'], testname)
+utest = utils.runUnitTest(e, target, utest_sources+class_objs+mco_objs)
+
+Return('utest')
+
+# Local Variables:
+# mode:python
+# End:
+# vim:syntax=python
